@@ -5,9 +5,15 @@ const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
 
-const app = express()
 
 const Package = require('./models/Package')
+
+const cors = require('cors')
+
+const app = express()
+
+app.use(cors({ origin: 'http://localhost:5173' }))
+
 
 app.use(express.json())
 

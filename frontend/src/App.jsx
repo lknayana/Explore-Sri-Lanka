@@ -1,37 +1,20 @@
 
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import AdminDashboard from './pages/AdminDashboard'
 import './App.css'
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
 
-      <section className="hero">
-        <div className="hero-content">
-          <p className="hero-subtitle">WELCOME TO PARADISE</p>
-
-          <h1>Discover the Beauty of Sri Lanka</h1>
-
-          <p>
-            From golden beaches to misty mountains,
-            your unforgettable journey begins here.
-          </p>
-
-          <a href="#welcome" className="hero-button">
-            Discover More
-          </a>
-        </div>
-      </section>
-
-      <section className="welcome" id="welcome">
-        <h2>Welcome to Explore Sri Lanka</h2>
-        <p>
-          Experience the beauty, culture and adventure of
-          Sri Lanka with our carefully planned tour packages.
-        </p>
-      </section>
-    </>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

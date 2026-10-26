@@ -81,6 +81,11 @@ function Packages() {
             <div className="package-list">
                 {filteredPackages.map(pkg => (
                     <div className="package-card" key={pkg._id}>
+                        <img
+                            src={pkg.image || '/images/hero.jpg'}
+                            alt={pkg.name}
+                            className="package-image"
+                        />
                         <h2>{pkg.name}</h2>
                         <p>Destination: {pkg.destination}</p>
                         <p>Duration: {pkg.duration} Days</p>

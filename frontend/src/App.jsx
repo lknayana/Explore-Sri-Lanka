@@ -8,6 +8,7 @@ import Packages from './pages/Packages'
 import PackageDetails from './pages/PackageDetails'
 import BookingForm from './pages/BookingForm'
 import AdminLogin from './pages/AdminLogin'
+import ManageBookings from './pages/ManageBookings'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/packages/:id" element={<PackageDetails />} />
         <Route path="/booking/:id" element={<BookingForm />} />
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/bookings" element={<ManageBookings />} />
       </Routes>
     </BrowserRouter>
   )

@@ -1,6 +1,7 @@
-
+import './AdminDashboard.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function AdminDashboard() {
     const [packages, setPackages] = useState([])
@@ -12,6 +13,9 @@ function AdminDashboard() {
     const [destination, setDestination] = useState('')
     const [price, setPrice] = useState('')
     const [description, setDescription] = useState('')
+    const [image, setImage] = useState('')
+    const [itinerary, setItinerary] = useState('')
+    const [includedServices, setIncludedServices] = useState('')
     const [editingId, setEditingId] = useState(null)
     const navigate = useNavigate()
     const token = sessionStorage.getItem('adminToken')
@@ -59,7 +63,10 @@ function AdminDashboard() {
             duration: Number(duration),
             destination,
             price: Number(price),
-            description
+            description,
+            image,
+            itinerary,
+            includedServices
         }
 
         let url = 'http://localhost:5000/api/packages'
@@ -96,6 +103,9 @@ function AdminDashboard() {
             setPrice('')
             setDescription('')
             setEditingId(null)
+            setImage('')
+            setItinerary('')
+            setIncludedServices('')
 
             loadPackages()
         } catch (error) {
@@ -112,6 +122,9 @@ function AdminDashboard() {
         setDestination(pkg.destination)
         setPrice(pkg.price)
         setDescription(pkg.description)
+        setImage(pkg.image || '')
+        setItinerary(pkg.itinerary || '')
+        setIncludedServices(pkg.includedServices || '')
 
         setMessage('')
         setError('')
@@ -141,7 +154,8 @@ function AdminDashboard() {
             if (handleUnauthorized(response)) return
 
             if (!response.ok) {
-                throw new Error('Could not delete package')
+                const data = await response.json()
+                throw new Error(data.message || 'Could not delete package')
             }
 
             setMessage('Package deleted successfully!')
@@ -154,11 +168,14 @@ function AdminDashboard() {
                 setDestination('')
                 setPrice('')
                 setDescription('')
+                setImage('')
+                setItinerary('')
+                setIncludedServices('')
             }
 
             loadPackages()
         } catch (error) {
-            setError('Could not delete package')
+            setError(error.message)
         }
     }
 
@@ -173,16 +190,21 @@ function AdminDashboard() {
     }
 
     return (
-        <div style={{ padding: '40px' }}>
+        <div className="admin-dashboard">
             <h1>Admin Dashboard</h1>
-            <button onClick={logout}>
-                Logout
-            </button>
+            <div className="dashboard-actions">
+                <button className="logout-button" onClick={logout}>
+                    Logout
+                </button>
+                <Link to="/admin/bookings" className="manage-bookings-link">
+                    Manage Bookings
+                </Link>
+            </div>
             <h2>Manage Tour Packages</h2>
 
             <h3>Add New Package</h3>
 
-            <form onSubmit={savePackage}>
+            <form className="package-form" onSubmit={savePackage}>
                 <input
                     type="text"
                     placeholder="Package Name"
@@ -225,6 +247,31 @@ function AdminDashboard() {
                     required
                 />
 
+
+                <input
+                    type="text"
+                    placeholder="Image Path (Example: /images/kandy.jpg)"
+                    value={image}
+                    onChange={e => setImage(e.target.value)}
+                />
+
+
+                <textarea
+                    placeholder="Tour Itinerary (Enter one activity per line)"
+                    value={itinerary}
+                    onChange={e => setItinerary(e.target.value)}
+                    rows="5"
+                />
+
+                <textarea
+                    placeholder="Included Services (Enter one service per line)"
+                    value={includedServices}
+                    onChange={e => setIncludedServices(e.target.value)}
+                    rows="5"
+                />
+
+
+
                 <button type="submit">
                     {editingId ? 'Update Package' : 'Add Package'}
                 </button>
@@ -235,7 +282,7 @@ function AdminDashboard() {
 
             <h3>Available Packages</h3>
 
-            <table border="1" cellPadding="12" cellSpacing="0">
+            <table className="package-table">
                 <thead>
                     <tr>
                         <th>Package Name</th>
@@ -250,9 +297,9 @@ function AdminDashboard() {
                     {packages.map(pkg => (
                         <tr key={pkg._id}>
                             <td>{pkg.name}</td>
-                            <td>{pkg.duration} Days</td>
+                            <td>{pkg.duration} {pkg.duration === 1 ? 'Day' : 'Days'}</td>
                             <td>{pkg.destination}</td>
-                            <td>{pkg.price}</td>
+                            <td>{pkg.price.toLocaleString('en-LK')}</td>
                             <td>
                                 <button onClick={() => editPackage(pkg)}>
                                     Edit

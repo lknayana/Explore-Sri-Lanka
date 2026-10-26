@@ -76,3 +76,14 @@
     font-size: 34px;
   }
 }
+
+.manage-bookings-link {
+  display: inline-block;
+  background-color: #D4AF37;
+  color: #0A2342;
+  padding: 12px 20px;
+  margin: 20px 0;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}

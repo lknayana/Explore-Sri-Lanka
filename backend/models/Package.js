@@ -28,6 +28,16 @@ const packageSchema = new mongoose.Schema({
         required: true
     },
 
+    itinerary: {
+        type: String,
+        default: ''
+    },
+
+    includedServices: {
+        type: String,
+        default: ''
+    },
+
     image: {
         type: String
     }

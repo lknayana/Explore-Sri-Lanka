@@ -47,3 +47,18 @@
     background-color: #D4AF37;
     color: #0A2342;
 }
+
+
+.tour-info {
+    background-color: #f8f9fb;
+    padding: 20px 25px;
+    border-left: 4px solid #D4AF37;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.tour-info p {
+    margin: 10px 0;
+    color: #444;
+    line-height: 1.8;
+}

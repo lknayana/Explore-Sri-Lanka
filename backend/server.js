@@ -61,7 +61,16 @@ app.get('/', (req, res) => {
 
 app.post('/api/packages', verifyAdmin, async (req, res) => {
     try {
-        const { name, duration, destination, price, description, image } = req.body
+        const {
+            name,
+            duration,
+            destination,
+            price,
+            description,
+            image,
+            itinerary,
+            includedServices
+        } = req.body
 
         if (!name || !duration || !destination || price === undefined || !description) {
             return res.status(400).json({ message: 'Please fill all required fields' })
@@ -73,7 +82,9 @@ app.post('/api/packages', verifyAdmin, async (req, res) => {
             destination,
             price,
             description,
-            image
+            image,
+            itinerary,
+            includedServices
         })
 
         const savedPackage = await newPackage.save()
@@ -142,6 +153,21 @@ app.post('/api/admin/login', async (req, res) => {
 })
 
 
+app.get('/api/bookings', verifyAdmin, async (req, res) => {
+    try {
+        const bookings = await Booking.find()
+            .populate('packageId', 'name duration destination')
+            .sort({ createdAt: -1 })
+
+        res.json(bookings)
+    } catch (error) {
+        res.status(500).json({
+            message: 'Failed to load bookings'
+        })
+    }
+})
+
+
 
 app.get('/api/packages', async (req, res) => {
     try {
@@ -181,6 +207,46 @@ app.get('/api/packages/:id', async (req, res) => {
 })
 
 
+app.put('/api/bookings/:id/status', verifyAdmin, async (req, res) => {
+    try {
+        const { status } = req.body
+
+        if (!['Pending', 'Confirmed', 'Cancelled'].includes(status)) {
+            return res.status(400).json({
+                message: 'Invalid booking status'
+            })
+        }
+
+        const booking = await Booking.findByIdAndUpdate(
+            req.params.id,
+            { status: status },
+            { new: true, runValidators: true }
+        )
+
+        if (!booking) {
+            return res.status(404).json({
+                message: 'Booking not found'
+            })
+        }
+
+        res.json({
+            message: 'Booking status updated successfully',
+            booking: booking
+        })
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return res.status(400).json({
+                message: 'Invalid booking ID'
+            })
+        }
+
+        res.status(500).json({
+            message: 'Failed to update booking status'
+        })
+    }
+})
+
 
 
 app.put('/api/packages/:id', verifyAdmin, async (req, res) => {
@@ -213,11 +279,24 @@ app.put('/api/packages/:id', verifyAdmin, async (req, res) => {
 })
 
 
+
 app.delete('/api/packages/:id', verifyAdmin, async (req, res) => {
     try {
-        const deletedPackage = await Package.findByIdAndDelete(
-            req.params.id
-        )
+        const packageId = req.params.id
+
+        // Check whether the package has bookings
+        const existingBooking = await Booking.findOne({
+            packageId: packageId
+        })
+
+        if (existingBooking) {
+            return res.status(400).json({
+                message: 'Cannot delete a package with existing bookings'
+            })
+        }
+
+        // Delete the package if no bookings exist
+        const deletedPackage = await Package.findByIdAndDelete(packageId)
 
         if (!deletedPackage) {
             return res.status(404).json({
@@ -228,6 +307,7 @@ app.delete('/api/packages/:id', verifyAdmin, async (req, res) => {
         res.json({
             message: 'Package deleted successfully'
         })
+
     } catch (error) {
         if (error.name === 'CastError') {
             return res.status(400).json({
@@ -240,6 +320,7 @@ app.delete('/api/packages/:id', verifyAdmin, async (req, res) => {
         })
     }
 })
+
 
 
 app.post('/api/bookings', async (req, res) => {

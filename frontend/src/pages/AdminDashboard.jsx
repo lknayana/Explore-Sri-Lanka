@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function AdminDashboard() {
     const [packages, setPackages] = useState([])
@@ -12,6 +13,26 @@ function AdminDashboard() {
     const [price, setPrice] = useState('')
     const [description, setDescription] = useState('')
     const [editingId, setEditingId] = useState(null)
+    const navigate = useNavigate()
+    const token = sessionStorage.getItem('adminToken')
+
+    useEffect(() => {
+        if (!token) {
+            navigate('/admin/login', { replace: true })
+        }
+    }, [token, navigate])
+
+
+    function handleUnauthorized(response) {
+        if (response.status === 401) {
+            sessionStorage.removeItem('adminToken')
+            navigate('/admin/login', { replace: true })
+            return true
+        }
+
+        return false
+    }
+
 
     function loadPackages() {
         fetch('http://localhost:5000/api/packages')
@@ -53,10 +74,13 @@ function AdminDashboard() {
             const response = await fetch(url, {
                 method: method,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(packageData)
             })
+
+            if (handleUnauthorized(response)) return
 
             if (!response.ok) {
                 throw new Error('Could not save package')
@@ -106,8 +130,15 @@ function AdminDashboard() {
         try {
             const response = await fetch(
                 `http://localhost:5000/api/packages/${id}`,
-                { method: 'DELETE' }
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
             )
+
+            if (handleUnauthorized(response)) return
 
             if (!response.ok) {
                 throw new Error('Could not delete package')
@@ -132,10 +163,21 @@ function AdminDashboard() {
     }
 
 
+    function logout() {
+        sessionStorage.removeItem('adminToken')
+        navigate('/admin/login', { replace: true })
+    }
+
+    if (!token) {
+        return null
+    }
 
     return (
         <div style={{ padding: '40px' }}>
             <h1>Admin Dashboard</h1>
+            <button onClick={logout}>
+                Logout
+            </button>
             <h2>Manage Tour Packages</h2>
 
             <h3>Add New Package</h3>

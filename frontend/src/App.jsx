@@ -6,6 +6,9 @@ import AdminDashboard from './pages/AdminDashboard'
 import './App.css'
 import Packages from './pages/Packages'
 import PackageDetails from './pages/PackageDetails'
+import BookingForm from './pages/BookingForm'
+import AdminLogin from './pages/AdminLogin'
+
 
 function App() {
   return (
@@ -17,6 +20,8 @@ function App() {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/packages" element={<Packages />} />
         <Route path="/packages/:id" element={<PackageDetails />} />
+        <Route path="/booking/:id" element={<BookingForm />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
       </Routes>
     </BrowserRouter>
   )

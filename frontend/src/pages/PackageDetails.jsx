@@ -41,9 +41,9 @@ function PackageDetails() {
 
             <h2>LKR {pkg.price.toLocaleString()}</h2>
 
-            <button disabled>
-                Request Booking - Coming Soon
-            </button>
+            <Link to={`/booking/${pkg._id}`} className="booking-button">
+                Request Booking
+            </Link>
         </div>
     )
 }

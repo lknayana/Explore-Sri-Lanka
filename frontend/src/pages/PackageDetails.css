@@ -32,3 +32,18 @@
     border: none;
     border-radius: 5px;
 }
+
+.booking-button {
+    display: inline-block;
+    background-color: #0A2342;
+    color: white;
+    padding: 14px 25px;
+    margin-top: 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.booking-button:hover {
+    background-color: #D4AF37;
+    color: #0A2342;
+}

@@ -1,0 +1,30 @@
+.home {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.home h1 {
+  color: #0A2342;
+  font-size: 40px;
+}
+
+.home h2 {
+  color: #D4AF37;
+}
+
+.home p {
+  font-size: 18px;
+}
+
+.home button {
+  background-color: #0A2342;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.home button:hover {
+  background-color: #D4AF37;
+}

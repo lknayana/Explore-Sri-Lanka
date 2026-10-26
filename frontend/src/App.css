@@ -1,30 +1,78 @@
-.home {
-  text-align: center;
-  padding: 100px 20px;
+.hero {
+  height: 550px;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.45)),
+    url('/images/hero.jpg');
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+  color: white;
+  background-color: #0A2342;
 }
 
-.home h1 {
-  color: #0A2342;
-  font-size: 40px;
+.hero-content {
+  max-width: 650px;
 }
 
-.home h2 {
+.hero-subtitle {
   color: #D4AF37;
+  font-size: 16px;
+  letter-spacing: 3px;
 }
 
-.home p {
+.hero h1 {
+  font-size: 52px;
+  margin: 15px 0;
+}
+
+.hero-content p {
+  line-height: 1.7;
   font-size: 18px;
 }
 
-.home button {
-  background-color: #0A2342;
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.hero-button {
+  display: inline-block;
+  background-color: #D4AF37;
+  color: #0A2342;
+  padding: 14px 28px;
+  margin-top: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
 }
 
-.home button:hover {
-  background-color: #D4AF37;
+.hero-button:hover {
+  background-color: white;
+}
+
+.welcome {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.welcome h2 {
+  color: #0A2342;
+  font-size: 32px;
+}
+
+.welcome p {
+  color: #555;
+  max-width: 650px;
+  margin: 20px auto;
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 450px;
+    padding: 0 6%;
+  }
+
+  .hero h1 {
+    font-size: 34px;
+  }
 }

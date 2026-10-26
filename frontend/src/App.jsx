@@ -1,3 +1,4 @@
+
 import Navbar from './components/Navbar'
 import './App.css'
 
@@ -6,12 +7,30 @@ function App() {
     <>
       <Navbar />
 
-      <div className="home">
-        <h1>Explore Sri Lanka</h1>
-        <h2>Journey Beyond Limits</h2>
-        <p>Welcome to our Travel Booking and Management System.</p>
-        <button>Explore Packages</button>
-      </div>
+      <section className="hero">
+        <div className="hero-content">
+          <p className="hero-subtitle">WELCOME TO PARADISE</p>
+
+          <h1>Discover the Beauty of Sri Lanka</h1>
+
+          <p>
+            From golden beaches to misty mountains,
+            your unforgettable journey begins here.
+          </p>
+
+          <a href="#welcome" className="hero-button">
+            Discover More
+          </a>
+        </div>
+      </section>
+
+      <section className="welcome" id="welcome">
+        <h2>Welcome to Explore Sri Lanka</h2>
+        <p>
+          Experience the beauty, culture and adventure of
+          Sri Lanka with our carefully planned tour packages.
+        </p>
+      </section>
     </>
   )
 }

@@ -65,6 +65,32 @@ app.get('/api/packages', async (req, res) => {
 })
 
 
+app.get('/api/packages/:id', async (req, res) => {
+    try {
+        const pkg = await Package.findById(req.params.id)
+
+        if (!pkg) {
+            return res.status(404).json({
+                message: 'Package not found'
+            })
+        }
+
+        res.json(pkg)
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return res.status(400).json({
+                message: 'Invalid package ID'
+            })
+        }
+
+        res.status(500).json({
+            message: 'Failed to retrieve package'
+        })
+    }
+})
+
+
+
 
 app.put('/api/packages/:id', async (req, res) => {
     try {

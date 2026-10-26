@@ -1,0 +1,34 @@
+.details-page {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.details-page h1 {
+    color: #0A2342;
+    font-size: 36px;
+}
+
+.details-page h2 {
+    color: #0A2342;
+    margin-top: 30px;
+}
+
+.details-page p {
+    color: #555;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.details-page a {
+    color: #B08D29;
+    text-decoration: none;
+}
+
+.details-page button {
+    background-color: #0A2342;
+    color: white;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 5px;
+}

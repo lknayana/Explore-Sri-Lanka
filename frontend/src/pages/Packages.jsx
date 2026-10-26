@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import './Packages.css'
 
 function Packages() {
@@ -85,7 +86,9 @@ function Packages() {
                         <p>Duration: {pkg.duration} Days</p>
                         <p>{pkg.description}</p>
                         <h3>LKR {pkg.price.toLocaleString()}</h3>
-                        <button>View Details</button>
+                        <Link to={`/packages/${pkg._id}`} className="details-button">
+                            View Details
+                        </Link>
                     </div>
                 ))}
             </div>

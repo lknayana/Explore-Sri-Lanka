@@ -69,7 +69,8 @@ app.post('/api/packages', verifyAdmin, async (req, res) => {
             description,
             image,
             itinerary,
-            includedServices
+            includedServices,
+            accommodation
         } = req.body
 
         if (!name || !duration || !destination || price === undefined || !description) {
@@ -84,7 +85,8 @@ app.post('/api/packages', verifyAdmin, async (req, res) => {
             description,
             image,
             itinerary,
-            includedServices
+            includedServices,
+            accommodation
         })
 
         const savedPackage = await newPackage.save()

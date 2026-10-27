@@ -60,7 +60,8 @@
 }
 
 .package-form input,
-.package-form textarea {
+.package-form textarea,
+.package-form select {
     padding: 13px;
     border: 1px solid #ccc;
     border-radius: 5px;

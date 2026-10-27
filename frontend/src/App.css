@@ -87,3 +87,160 @@
   border-radius: 5px;
   font-weight: bold;
 }
+
+
+/* Homepage Sections */
+
+.home-section {
+  padding: 65px 8%;
+  text-align: center;
+}
+
+.home-section h2 {
+  color: #0A2342;
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.home-section>p {
+  color: #666;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto 35px;
+}
+
+/* Featured Packages */
+
+.home-package-grid,
+.destination-grid,
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 35px;
+}
+
+.home-package-card {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: left;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+.home-package-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.home-package-content {
+  padding: 20px;
+}
+
+.home-package-content h3 {
+  color: #0A2342;
+}
+
+.home-package-content h4 {
+  color: #B08D29;
+}
+
+.home-package-content a,
+.view-all-button {
+  display: inline-block;
+  padding: 12px 22px;
+  background-color: #0A2342;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.home-package-content a:hover,
+.view-all-button:hover {
+  background-color: #D4AF37;
+  color: #0A2342;
+}
+
+/* Destinations */
+
+.destinations {
+  background-color: #f8f9fb;
+}
+
+.destination-grid img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.destination-grid h3 {
+  color: #0A2342;
+}
+
+/* Why Choose Us */
+
+.features-grid>div {
+  background-color: #f8f9fb;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.features-grid h3 {
+  color: #0A2342;
+}
+
+.features-grid p {
+  color: #666;
+  line-height: 1.7;
+}
+
+/* About */
+
+.about-section {
+  background-color: #f8f9fb;
+}
+
+/* Footer */
+
+.footer {
+  background-color: #0A2342;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+.footer h3 {
+  color: #D4AF37;
+  font-size: 24px;
+}
+
+/* Responsive Design */
+
+@media (max-width: 900px) {
+
+  .home-package-grid,
+  .destination-grid,
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+
+  .home-package-grid,
+  .destination-grid,
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-section {
+    padding: 45px 6%;
+  }
+
+  .home-section h2 {
+    font-size: 27px;
+  }
+}

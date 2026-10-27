@@ -88,7 +88,9 @@ function Packages() {
                         />
                         <h2>{pkg.name}</h2>
                         <p>Destination: {pkg.destination}</p>
-                        <p>Duration: {pkg.duration} Days</p>
+                        <p>
+                            Duration: {pkg.duration} {pkg.duration === 1 ? 'Day' : 'Days'}
+                        </p>
                         <p>{pkg.description}</p>
                         <h3>LKR {pkg.price.toLocaleString()}</h3>
                         <Link to={`/packages/${pkg._id}`} className="details-button">

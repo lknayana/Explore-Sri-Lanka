@@ -39,7 +39,9 @@ function PackageDetails() {
             />
 
             <p><strong>Destination:</strong> {pkg.destination}</p>
-            <p><strong>Duration:</strong> {pkg.duration} Days</p>
+            <p>
+                <strong>Duration:</strong> {pkg.duration} {pkg.duration === 1 ? 'Day' : 'Days'}
+            </p>
 
             <h2>About This Tour</h2>
             <p>{pkg.description}</p>
@@ -69,6 +71,23 @@ function PackageDetails() {
                 <p>Included services will be updated soon.</p>
             )}
 
+
+            {pkg.duration > 1 && (
+                <>
+                    <h2>Accommodation</h2>
+
+                    <div className="tour-info">
+                        <p>
+                            {pkg.accommodation ||
+                                'Accommodation will be arranged by Explore Sri Lanka.'}
+                        </p>
+
+                        <p>
+                            Hotel arrangements are managed by our team.
+                        </p>
+                    </div>
+                </>
+            )}
 
             <h2>LKR {pkg.price.toLocaleString()}</h2>
 

@@ -16,6 +16,7 @@ function AdminDashboard() {
     const [image, setImage] = useState('')
     const [itinerary, setItinerary] = useState('')
     const [includedServices, setIncludedServices] = useState('')
+    const [accommodation, setAccommodation] = useState('')
     const [editingId, setEditingId] = useState(null)
     const navigate = useNavigate()
     const token = sessionStorage.getItem('adminToken')
@@ -66,7 +67,8 @@ function AdminDashboard() {
             description,
             image,
             itinerary,
-            includedServices
+            includedServices,
+            accommodation
         }
 
         let url = 'http://localhost:5000/api/packages'
@@ -106,6 +108,7 @@ function AdminDashboard() {
             setImage('')
             setItinerary('')
             setIncludedServices('')
+            setAccommodation('')
 
             loadPackages()
         } catch (error) {
@@ -125,6 +128,7 @@ function AdminDashboard() {
         setImage(pkg.image || '')
         setItinerary(pkg.itinerary || '')
         setIncludedServices(pkg.includedServices || '')
+        setAccommodation(pkg.accommodation || '')
 
         setMessage('')
         setError('')
@@ -171,6 +175,7 @@ function AdminDashboard() {
                 setImage('')
                 setItinerary('')
                 setIncludedServices('')
+                setAccommodation(pkg.accommodation || '')
             }
 
             loadPackages()
@@ -213,14 +218,16 @@ function AdminDashboard() {
                     required
                 />
 
-                <input
-                    type="number"
-                    placeholder="Duration (Days)"
+                <select
                     value={duration}
                     onChange={e => setDuration(e.target.value)}
-                    min="1"
                     required
-                />
+                >
+                    <option value="">Select Duration</option>
+                    <option value="1">1 Day</option>
+                    <option value="3">3 Days</option>
+                    <option value="5">5 Days</option>
+                </select>
 
                 <input
                     type="text"
@@ -269,6 +276,16 @@ function AdminDashboard() {
                     onChange={e => setIncludedServices(e.target.value)}
                     rows="5"
                 />
+
+
+                {Number(duration) > 1 && (
+                    <textarea
+                        placeholder="Accommodation Details"
+                        value={accommodation}
+                        onChange={e => setAccommodation(e.target.value)}
+                        rows="4"
+                    />
+                )}
 
 
 

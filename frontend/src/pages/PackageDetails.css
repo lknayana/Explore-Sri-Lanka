@@ -62,3 +62,83 @@
     color: #444;
     line-height: 1.8;
 }
+
+
+/* Final Package Details Styling */
+
+.details-page {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+}
+
+.details-page h1 {
+    color: #0A2342;
+    font-size: 38px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.details-page h2 {
+    color: #0A2342;
+    font-size: 25px;
+    margin-top: 35px;
+    margin-bottom: 15px;
+}
+
+.details-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 15px 0 25px;
+}
+
+.details-page p {
+    line-height: 1.8;
+}
+
+.tour-info {
+    background-color: #f8f9fb;
+    padding: 25px;
+    border-left: 4px solid #D4AF37;
+    border-radius: 6px;
+}
+
+.tour-info p {
+    margin: 10px 0;
+}
+
+.booking-button {
+    display: inline-block;
+    background-color: #D4AF37;
+    color: #0A2342;
+    padding: 15px 35px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.booking-button:hover {
+    background-color: #0A2342;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .details-page {
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    .details-page h1 {
+        font-size: 29px;
+    }
+
+    .details-page h2 {
+        font-size: 22px;
+    }
+
+    .tour-info {
+        padding: 18px;
+    }
+}

@@ -4,12 +4,15 @@ const mongoose = require('mongoose')
 const packageSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        minlength: 3
     },
 
     duration: {
         type: Number,
-        required: true
+        required: true,
+        enum: [1, 3, 5]
     },
 
     destination: {
@@ -34,6 +37,11 @@ const packageSchema = new mongoose.Schema({
     },
 
     includedServices: {
+        type: String,
+        default: ''
+    },
+
+    accommodation: {
         type: String,
         default: ''
     },

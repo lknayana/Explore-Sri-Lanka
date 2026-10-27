@@ -86,7 +86,7 @@ app.post('/api/packages', verifyAdmin, async (req, res) => {
             image,
             itinerary,
             includedServices,
-            accommodation
+            accommodation: Number(duration) === 1 ? '' : accommodation
         })
 
         const savedPackage = await newPackage.save()
@@ -251,11 +251,36 @@ app.put('/api/bookings/:id/status', verifyAdmin, async (req, res) => {
 
 
 
+
 app.put('/api/packages/:id', verifyAdmin, async (req, res) => {
     try {
+        const {
+            name,
+            duration,
+            destination,
+            price,
+            description,
+            image,
+            itinerary,
+            includedServices,
+            accommodation
+        } = req.body
+
+        const packageData = {
+            name,
+            duration,
+            destination,
+            price,
+            description,
+            image,
+            itinerary,
+            includedServices,
+            accommodation: Number(duration) === 1 ? '' : accommodation
+        }
+
         const updatedPackage = await Package.findByIdAndUpdate(
             req.params.id,
-            req.body,
+            packageData,
             { new: true, runValidators: true }
         )
 
@@ -266,11 +291,12 @@ app.put('/api/packages/:id', verifyAdmin, async (req, res) => {
         }
 
         res.json(updatedPackage)
+
     } catch (error) {
         if (error.name === 'ValidationError' ||
             error.name === 'CastError') {
             return res.status(400).json({
-                message: 'Invalid package information or ID'
+                message: 'Invalid package information'
             })
         }
 
@@ -279,6 +305,7 @@ app.put('/api/packages/:id', verifyAdmin, async (req, res) => {
         })
     }
 })
+
 
 
 
@@ -359,15 +386,70 @@ app.post('/api/bookings', async (req, res) => {
         }
 
         // Check travel date
-        const selectedDate = new Date(travelDate)
-        const today = new Date()
-        today.setHours(0, 0, 0, 0)
 
-        if (isNaN(selectedDate.getTime()) || selectedDate < today) {
+
+        const dateFormat = /^\d{4}-\d{2}-\d{2}$/
+
+        const today = new Date()
+
+        const sriLankaDate = new Intl.DateTimeFormat('en-GB', {
+            timeZone: 'Asia/Colombo',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+        }).formatToParts(today)
+
+        const year = sriLankaDate.find(p => p.type === 'year').value
+        const month = sriLankaDate.find(p => p.type === 'month').value
+        const day = sriLankaDate.find(p => p.type === 'day').value
+
+        const todayString = `${year}-${month}-${day}`
+
+        let validDate = false
+
+        if (typeof travelDate === 'string' &&
+            dateFormat.test(travelDate)) {
+
+            const [y, m, d] = travelDate.split('-').map(Number)
+            const date = new Date(Date.UTC(y, m - 1, d))
+
+            validDate =
+                date.getUTCFullYear() === y &&
+                date.getUTCMonth() === m - 1 &&
+                date.getUTCDate() === d
+        }
+
+        if (!validDate || travelDate < todayString) {
             return res.status(400).json({
-                message: 'Please select a valid future travel date'
+                message: 'Please select a valid present or future travel date'
             })
         }
+
+
+
+
+        if (!Number.isInteger(Number(travellers)) ||
+            Number(travellers) < 1 ||
+            Number(travellers) > 50) {
+            return res.status(400).json({
+                message: 'Number of travellers must be between 1 and 50'
+            })
+        }
+
+        if (!Number.isInteger(Number(guideCount)) ||
+            Number(guideCount) < 0 ||
+            Number(guideCount) > 10) {
+            return res.status(400).json({
+                message: 'Number of guides must be between 0 and 10'
+            })
+        }
+
+        if (!['Car', 'Van', 'Bus'].includes(vehicleType)) {
+            return res.status(400).json({
+                message: 'Please select a valid vehicle type'
+            })
+        }
+
 
         // Create the booking
         const newBooking = new Booking({

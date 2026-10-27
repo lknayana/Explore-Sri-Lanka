@@ -17,7 +17,9 @@ const bookingSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        lowercase: true,
+        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     },
 
     phone: {
@@ -34,7 +36,8 @@ const bookingSchema = new mongoose.Schema({
     travellers: {
         type: Number,
         required: true,
-        min: 1
+        min: 1,
+        max: 50
     },
 
     vehicleType: {
@@ -51,7 +54,8 @@ const bookingSchema = new mongoose.Schema({
     guideCount: {
         type: Number,
         required: true,
-        min: 0
+        min: 0,
+        max: 10
     },
 
     status: {

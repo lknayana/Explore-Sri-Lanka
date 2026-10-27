@@ -105,9 +105,12 @@ function BookingForm() {
                     <input
                         type="number"
                         min="1"
+                        max="50"
+                        step="1"
                         value={travellers}
                         onChange={e => setTravellers(e.target.value)}
                         required
+
                     />
 
                     <label>Preferred Vehicle</label>
@@ -134,9 +137,12 @@ function BookingForm() {
                     <input
                         type="number"
                         min="0"
+                        max="10"
+                        step="1"
                         value={guideCount}
                         onChange={e => setGuideCount(e.target.value)}
                         required
+
                     />
 
                     <button type="submit">Submit Booking Request</button>

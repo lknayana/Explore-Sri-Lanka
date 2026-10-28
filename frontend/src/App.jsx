@@ -1,4 +1,5 @@
-
+import Destinations from './pages/Destinations'
+import Footer from './components/Footer'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
@@ -24,7 +25,9 @@ function App() {
         <Route path="/booking/:id" element={<BookingForm />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/bookings" element={<ManageBookings />} />
+        <Route path="/destinations" element={<Destinations />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }

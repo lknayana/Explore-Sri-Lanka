@@ -146,12 +146,7 @@ function Home() {
                 </Link>
             </section>
 
-            {/* Footer */}
-            <footer className="footer">
-                <h3>Explore Sri Lanka</h3>
-                <p>Journey Beyond Limits</p>
-                <p>© 2026 Explore Sri Lanka. Academic Project.</p>
-            </footer>
+
         </>
     )
 }

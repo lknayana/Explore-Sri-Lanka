@@ -2,26 +2,32 @@
     background-color: #ffffff;
 }
 
+
+
 .destinations-banner {
-    background-color: #0A2342;
-    color: white;
+    background-color: #E8EEF5;
     text-align: center;
-    padding: 85px 20px;
+    padding: 55px 20px;
+    border-bottom: 3px solid #D4AF37;
 }
 
+
+
 .destinations-banner h1 {
-    font-size: 42px;
-    margin-bottom: 15px;
+    color: #0A2342;
+    font-size: 38px;
+    margin-bottom: 12px;
 }
 
 .destinations-banner p {
-    color: #D4AF37;
+    color: #526479;
     font-size: 18px;
 }
 
+
 .destinations-intro {
     text-align: center;
-    padding: 60px 20px 30px;
+    padding: 35px 20px 15px;
 }
 
 .destinations-intro h2 {
@@ -38,7 +44,7 @@
 
 .destinations-container {
     max-width: 1200px;
-    margin: 20px auto 70px;
+    margin: 10px auto 60px;
     padding: 0 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -125,6 +131,6 @@
     }
 
     .destinations-banner {
-        padding: 60px 20px;
+        padding: 35px 20px;
     }
 }

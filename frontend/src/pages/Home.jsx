@@ -2,8 +2,58 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
+
+const heroSlides = [
+    {
+        image: '/images/hero.jpg',
+        title: 'Discover the Beauty of Sri Lanka',
+        subtitle: 'From misty mountains to breathtaking landscapes.'
+    },
+    {
+        image: '/images/sigiriya.jpg',
+        title: 'Explore Ancient Wonders',
+        subtitle: 'Discover the rich history and heritage of Sri Lanka.'
+    },
+    {
+        image: '/images/galle.jpg',
+        title: 'Experience the Southern Coast',
+        subtitle: 'Enjoy beautiful beaches and unforgettable coastal journeys.'
+    },
+    {
+        image: '/images/kandy.jpeg',
+        title: 'Experience Sri Lankan Culture',
+        subtitle: 'Explore historic cities and traditional experiences.'
+    }
+]
+
+
 function Home() {
     const [packages, setPackages] = useState([])
+
+    const [currentSlide, setCurrentSlide] = useState(0)
+
+    function nextSlide() {
+        setCurrentSlide(previous =>
+            (previous + 1) % heroSlides.length
+        )
+    }
+
+    function previousSlide() {
+        setCurrentSlide(previous =>
+            (previous - 1 + heroSlides.length) % heroSlides.length
+        )
+    }
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide(previous =>
+                (previous + 1) % heroSlides.length
+            )
+        }, 5000)
+
+        return () => clearInterval(timer)
+    }, [])
+
 
     useEffect(() => {
         fetch('http://localhost:5000/api/packages')
@@ -14,23 +64,72 @@ function Home() {
 
     return (
         <>
-            {/* Hero Section */}
-            <section className="hero">
-                <div className="hero-content">
-                    <p className="hero-subtitle">WELCOME TO PARADISE</p>
 
-                    <h1>Discover the Beauty of Sri Lanka</h1>
+            {/* Hero Slideshow */}
+            <section className="home-slider">
 
-                    <p>
-                        From golden beaches to misty mountains,
-                        your unforgettable journey begins here.
+                {heroSlides.map((slide, index) => (
+                    <div
+                        key={slide.image}
+                        className={`home-slide ${index === currentSlide ? 'slide-active' : ''
+                            }`}
+                        style={{
+                            backgroundImage: `url(${slide.image})`
+                        }}
+                        aria-hidden={index !== currentSlide}
+                    />
+                ))}
+
+                <div className="home-slider-overlay" />
+
+                <div className="home-slider-content">
+                    <p className="slider-label">WELCOME TO PARADISE</p>
+
+                    <h1>{heroSlides[currentSlide].title}</h1>
+
+                    <p className="slider-description">
+                        {heroSlides[currentSlide].subtitle}
                     </p>
 
                     <a href="#welcome" className="hero-button">
                         Discover More
                     </a>
                 </div>
+
+                <button
+                    type="button"
+                    className="slider-arrow slider-prev"
+                    onClick={previousSlide}
+                    aria-label="Previous slide"
+                >
+                    &#10094;
+                </button>
+
+                <button
+                    type="button"
+                    className="slider-arrow slider-next"
+                    onClick={nextSlide}
+                    aria-label="Next slide"
+                >
+                    &#10095;
+                </button>
+
+                <div className="slider-dots">
+                    {heroSlides.map((slide, index) => (
+                        <button
+                            key={slide.image}
+                            type="button"
+                            className={`slider-dot ${index === currentSlide ? 'dot-active' : ''
+                                }`}
+                            onClick={() => setCurrentSlide(index)}
+                            aria-label={`Go to slide ${index + 1}`}
+                            aria-current={index === currentSlide ? 'true' : undefined}
+                        />
+                    ))}
+                </div>
+
             </section>
+
 
             {/* Welcome Section */}
             <section className="welcome" id="welcome">
@@ -74,12 +173,18 @@ function Home() {
                 </Link>
             </section>
 
-            {/* Destinations */}
+
+            {/* Popular Destinations */}
             <section className="home-section destinations" id="destinations">
+
                 <h2>Popular Destinations</h2>
-                <p>Discover some of Sri Lanka's beautiful destinations.</p>
+
+                <p>
+                    Discover some of Sri Lanka's beautiful destinations.
+                </p>
 
                 <div className="destination-grid">
+
                     <div>
                         <img src="/images/kandy.jpeg" alt="Kandy" />
                         <h3>Kandy</h3>
@@ -94,8 +199,15 @@ function Home() {
                         <img src="/images/sigiriya.jpg" alt="Sigiriya" />
                         <h3>Sigiriya</h3>
                     </div>
+
                 </div>
+
+                <Link to="/destinations" className="view-all-button">
+                    Explore All Destinations
+                </Link>
+
             </section>
+
 
             {/* Why Choose Us */}
             <section className="home-section">
@@ -127,6 +239,9 @@ function Home() {
                     to help visitors discover tour packages, explore destinations
                     and request their preferred travel experiences.
                 </p>
+                <Link to="/about" className="view-all-button">
+                    Learn More About Us
+                </Link>
             </section>
 
             {/* Contact */}

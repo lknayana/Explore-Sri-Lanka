@@ -150,3 +150,71 @@
     border-radius: 8px;
     margin: 20px 0;
 }
+
+
+/* Final Tour Packages Page Styling */
+
+/* Light background for the package area */
+.packages-page {
+    background-color: #eef2f7;
+    min-height: 80vh;
+    padding-bottom: 65px;
+}
+
+/* Raised white package cards */
+.package-card {
+    background-color: #ffffff;
+    border: 1px solid #d4dce7;
+    border-radius: 12px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 24px rgba(10, 35, 66, 0.13);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Slight lift when the mouse is over a card */
+.package-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 30px rgba(10, 35, 66, 0.19);
+}
+
+/* Package images */
+.package-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* Package headings */
+.package-card h2 {
+    color: #0A2342;
+    font-weight: 800;
+}
+
+/* Package information */
+.package-card p {
+    color: #526479;
+    line-height: 1.7;
+}
+
+/* Package price */
+.package-card h3 {
+    color: #B08D29;
+    font-weight: 800;
+}
+
+/* View Details button */
+.package-card .details-button {
+    display: inline-block;
+    background-color: #0A2342;
+    color: white;
+    border-radius: 6px;
+    padding: 12px 22px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.package-card .details-button:hover {
+    background-color: #D4AF37;
+    color: #0A2342;
+}

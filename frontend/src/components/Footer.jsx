@@ -40,15 +40,18 @@ function Footer() {
                     <p>Scenic Journeys</p>
                 </div>
 
+
                 <div className="footer-column">
                     <h3>Get in Touch</h3>
-                    <p>Sri Lanka</p>
-                    <p>
-                        Explore our packages and submit a booking
-                        request to begin planning your journey.
-                    </p>
+
+                    <p>No. 25, Galle Road, Colombo 03, Sri Lanka</p>
+                    <p>Tel: +94 11 444 3322</p>
+                    <p>Email: info@exploresrilanka.example</p>
+
                     <Link to="/contact">Contact Information</Link>
+
                 </div>
+
 
             </div>
 

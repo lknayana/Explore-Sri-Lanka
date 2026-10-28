@@ -1,0 +1,184 @@
+.contact-page {
+    background-color: white;
+}
+
+/* Banner */
+
+.contact-banner {
+    background-color: #0A2342;
+    text-align: center;
+    padding: 85px 20px;
+}
+
+.contact-banner h1 {
+    color: white;
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.contact-banner p {
+    color: #D4AF37;
+    font-size: 18px;
+}
+
+/* Introduction */
+
+.contact-intro {
+    text-align: center;
+    padding: 60px 20px 25px;
+}
+
+.contact-intro h2 {
+    color: #0A2342;
+    font-size: 32px;
+}
+
+.contact-intro p {
+    color: #666;
+    max-width: 700px;
+    margin: 20px auto;
+    line-height: 1.8;
+}
+
+/* Contact Information */
+
+.contact-grid {
+    max-width: 1200px;
+    margin: 20px auto 70px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.contact-card {
+    background-color: #f8f9fb;
+    border-top: 4px solid #D4AF37;
+    padding: 35px 25px;
+    border-radius: 8px;
+}
+
+.contact-card h2 {
+    color: #0A2342;
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+.contact-card p {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* Booking Steps */
+
+.contact-steps {
+    background-color: #f8f9fb;
+    padding: 65px 8%;
+    text-align: center;
+}
+
+.contact-steps h2 {
+    color: #0A2342;
+    margin-bottom: 35px;
+}
+
+.contact-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.contact-steps-grid div {
+    background: white;
+    border-radius: 8px;
+    padding: 30px 20px;
+}
+
+.contact-steps-grid span {
+    color: #D4AF37;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.contact-steps-grid h3 {
+    color: #0A2342;
+    margin: 15px 0;
+}
+
+.contact-steps-grid p {
+    color: #666;
+    line-height: 1.7;
+}
+
+/* Call to Action */
+
+.contact-cta {
+    padding: 65px 20px;
+    text-align: center;
+}
+
+.contact-cta h2 {
+    color: #0A2342;
+    margin-bottom: 15px;
+}
+
+.contact-cta p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.contact-button {
+    display: inline-block;
+    background-color: #D4AF37;
+    color: #0A2342;
+    padding: 14px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-button:hover {
+    background-color: #0A2342;
+    color: white;
+}
+
+/* Responsive Design */
+
+@media (max-width: 900px) {
+
+    .contact-grid,
+    .contact-steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-banner {
+        padding: 60px 20px;
+    }
+
+    .contact-banner h1 {
+        font-size: 30px;
+    }
+
+    .contact-grid,
+    .contact-steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-intro,
+    .contact-steps,
+    .contact-cta {
+        padding: 45px 6%;
+    }
+}
+
+.contact-demo-note {
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+    margin: -35px 20px 50px;
+}

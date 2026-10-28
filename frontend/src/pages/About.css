@@ -1,0 +1,180 @@
+.about-page {
+    background-color: white;
+}
+
+/* Banner */
+
+.about-banner {
+    background-color: #0A2342;
+    text-align: center;
+    padding: 85px 20px;
+}
+
+.about-banner h1 {
+    color: white;
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.about-banner p {
+    color: #D4AF37;
+    font-size: 18px;
+}
+
+/* Introduction */
+
+.about-intro {
+    max-width: 1200px;
+    margin: 70px auto;
+    padding: 0 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.about-intro h2,
+.about-services h2 {
+    color: #0A2342;
+    font-size: 32px;
+    margin-bottom: 22px;
+}
+
+.about-intro p {
+    color: #555;
+    line-height: 1.9;
+    margin-bottom: 20px;
+}
+
+.about-intro img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Mission and Vision */
+
+.about-mission {
+    background-color: #f8f9fb;
+    padding: 65px 8%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.about-info-card {
+    background-color: white;
+    padding: 35px;
+    border-left: 4px solid #D4AF37;
+    border-radius: 8px;
+}
+
+.about-info-card h2 {
+    color: #0A2342;
+    margin-bottom: 15px;
+}
+
+.about-info-card p {
+    color: #555;
+    line-height: 1.8;
+}
+
+/* Services */
+
+.about-services {
+    padding: 70px 8%;
+    text-align: center;
+}
+
+.about-services-grid {
+    max-width: 1200px;
+    margin: 35px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.about-services-grid div {
+    background-color: #f8f9fb;
+    padding: 30px 20px;
+    border-radius: 8px;
+}
+
+.about-services-grid h3 {
+    color: #0A2342;
+    margin-bottom: 15px;
+}
+
+.about-services-grid p {
+    color: #666;
+    line-height: 1.8;
+}
+
+/* Call to Action */
+
+.about-cta {
+    background-color: #f8f9fb;
+    text-align: center;
+    padding: 65px 20px;
+}
+
+.about-cta h2 {
+    color: #0A2342;
+    margin-bottom: 15px;
+}
+
+.about-cta p {
+    margin-bottom: 25px;
+}
+
+.about-button {
+    display: inline-block;
+    background-color: #D4AF37;
+    color: #0A2342;
+    padding: 14px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.about-button:hover {
+    background-color: #0A2342;
+    color: white;
+}
+
+/* Responsive Design */
+
+@media (max-width: 900px) {
+    .about-intro {
+        grid-template-columns: 1fr;
+    }
+
+    .about-services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .about-banner h1 {
+        font-size: 30px;
+    }
+
+    .about-intro {
+        margin: 40px auto;
+    }
+
+    .about-mission,
+    .about-services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-mission,
+    .about-services {
+        padding: 45px 6%;
+    }
+
+    .about-intro img {
+        height: 250px;
+    }
+}

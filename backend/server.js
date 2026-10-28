@@ -15,6 +15,8 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const Admin = require('./models/Admin')
 
+const Review = require('./models/Review')
+
 const app = express()
 
 app.use(cors({ origin: 'http://localhost:5173' }))
@@ -209,6 +211,117 @@ app.get('/api/packages/:id', async (req, res) => {
 })
 
 
+app.get('/api/packages/:id/reviews', async (req, res) => {
+    try {
+        if (!mongoose.isValidObjectId(req.params.id)) {
+            return res.status(400).json({
+                message: 'Invalid package ID'
+            })
+        }
+
+        const reviews = await Review.find({
+            packageId: req.params.id
+        }).sort({ createdAt: -1 })
+
+        res.json(reviews)
+
+    } catch (error) {
+        res.status(500).json({
+            message: 'Could not load reviews'
+        })
+    }
+})
+
+
+app.post('/api/packages/:id/reviews', async (req, res) => {
+    try {
+        if (!mongoose.isValidObjectId(req.params.id)) {
+            return res.status(400).json({
+                message: 'Invalid package ID'
+            })
+        }
+
+        const pkg = await Package.findById(req.params.id)
+
+        if (!pkg) {
+            return res.status(404).json({
+                message: 'Tour package not found'
+            })
+        }
+
+        const { reviewerName, rating, comment } = req.body
+
+        if (
+            typeof reviewerName !== 'string' ||
+            typeof comment !== 'string' ||
+            !Number.isInteger(rating) ||
+            !reviewerName.trim() ||
+            !comment.trim()
+        ) {
+            return res.status(400).json({
+                message: 'Please enter valid review information'
+            })
+        }
+
+        const newReview = new Review({
+            packageId: req.params.id,
+            reviewerName,
+            rating,
+            comment
+        })
+
+        await newReview.save()
+
+        res.status(201).json({
+            message: 'Review submitted successfully',
+            review: newReview
+        })
+
+    } catch (error) {
+        if (error.name === 'ValidationError') {
+            return res.status(400).json({
+                message: 'Please check the review name, rating and comment'
+            })
+        }
+
+        res.status(500).json({
+            message: 'Could not submit review'
+        })
+    }
+})
+
+
+app.delete('/api/reviews/:id', verifyAdmin, async (req, res) => {
+    try {
+        if (!mongoose.isValidObjectId(req.params.id)) {
+            return res.status(400).json({
+                message: 'Invalid review ID'
+            })
+        }
+
+        const deletedReview = await Review.findByIdAndDelete(
+            req.params.id
+        )
+
+        if (!deletedReview) {
+            return res.status(404).json({
+                message: 'Review not found'
+            })
+        }
+
+        res.json({
+            message: 'Review deleted successfully'
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            message: 'Could not delete review'
+        })
+    }
+})
+
+
+
 app.put('/api/bookings/:id/status', verifyAdmin, async (req, res) => {
     try {
         const { status } = req.body
@@ -323,6 +436,7 @@ app.delete('/api/packages/:id', verifyAdmin, async (req, res) => {
                 message: 'Cannot delete a package with existing bookings'
             })
         }
+
 
         // Delete the package if no bookings exist
         const deletedPackage = await Package.findByIdAndDelete(packageId)
@@ -488,6 +602,44 @@ app.post('/api/bookings', async (req, res) => {
 })
 
 
+app.post('/api/bookings/track', async (req, res) => {
+    try {
+        const { bookingId, email } = req.body
+
+        if (
+            typeof bookingId !== 'string' ||
+            !mongoose.isValidObjectId(bookingId) ||
+            typeof email !== 'string' ||
+            !email.trim()
+        ) {
+            return res.status(400).json({
+                message: 'Please enter a valid booking reference and email'
+            })
+        }
+
+        const booking = await Booking.findOne({
+            _id: bookingId,
+            email: email.trim().toLowerCase()
+        }).populate('packageId', 'name')
+
+        if (!booking) {
+            return res.status(404).json({
+                message: 'Booking not found. Please check your details.'
+            })
+        }
+
+        res.json({
+            packageName: booking.packageId?.name || 'Package unavailable',
+            travelDate: booking.travelDate,
+            status: booking.status
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            message: 'Could not track booking'
+        })
+    }
+})
 
 
 mongoose.connect(process.env.MONGO_URI)

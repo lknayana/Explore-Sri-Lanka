@@ -62,3 +62,78 @@
     color: #666;
     margin-top: 25px;
 }
+
+.booking-reference {
+    margin-top: 25px;
+    padding: 20px;
+    background: #e8f6eb;
+    border-left: 4px solid #279452;
+    border-radius: 7px;
+    overflow-wrap: anywhere;
+}
+
+.booking-reference h3 {
+    color: #176a2c;
+    margin-bottom: 12px;
+}
+
+.booking-reference p {
+    margin-bottom: 12px;
+}
+
+.booking-reference a {
+    color: #0A2342;
+    font-weight: bold;
+}
+
+.reference-number {
+    background-color: white;
+    border: 1px solid #b9d9c3;
+    border-radius: 5px;
+    padding: 12px;
+    color: #0A2342;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+}
+
+
+/* Booking Reference Copy Button */
+
+.reference-copy-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background-color: white;
+    border: 1px solid #b9d9c3;
+    border-radius: 6px;
+    padding: 12px;
+    margin: 12px 0;
+}
+
+.reference-copy-box span {
+    color: #0A2342;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+}
+
+.copy-reference-button {
+    background-color: #0A2342;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 14px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.copy-reference-button:hover {
+    background-color: #D4AF37;
+    color: #0A2342;
+}
+
+@media (max-width: 600px) {
+    .reference-copy-box {
+        flex-wrap: wrap;
+    }
+}

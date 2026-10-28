@@ -1,6 +1,7 @@
 import './PackageDetails.css'
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import PackageReviews from '../components/PackageReviews'
 
 function PackageDetails() {
     const { id } = useParams()
@@ -94,6 +95,7 @@ function PackageDetails() {
             <Link to={`/booking/${pkg._id}`} className="booking-button">
                 Request Booking
             </Link>
+            <PackageReviews packageId={pkg._id} />
         </div>
     )
 }

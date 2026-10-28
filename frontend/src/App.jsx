@@ -12,7 +12,7 @@ import AdminLogin from './pages/AdminLogin'
 import ManageBookings from './pages/ManageBookings'
 import About from './pages/About'
 import Contact from './pages/Contact'
-
+import TrackBooking from './pages/TrackBooking'
 
 function App() {
   return (
@@ -30,6 +30,7 @@ function App() {
         <Route path="/destinations" element={<Destinations />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/track-booking" element={<TrackBooking />} />
       </Routes>
       <Footer />
     </BrowserRouter>

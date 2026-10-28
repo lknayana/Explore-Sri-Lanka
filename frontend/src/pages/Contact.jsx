@@ -48,10 +48,7 @@ function Contact() {
 
             </section>
 
-            <p className="contact-demo-note">
-                Note: The contact information above is sample data
-                provided for this academic project.
-            </p>
+
 
 
             {/* Booking Steps */}

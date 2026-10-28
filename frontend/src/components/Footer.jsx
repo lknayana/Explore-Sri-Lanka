@@ -30,6 +30,7 @@ function Footer() {
                     <Link to="/destinations">Destinations</Link>
                     <Link to="/about">About Us</Link>
                     <Link to="/contact">Contact Us</Link>
+                    <Link to="/track-booking">Track Booking</Link>
                 </div>
 
                 <div className="footer-column">

@@ -17,7 +17,7 @@ function Navbar() {
                 <NavLink to="/destinations">Destinations</NavLink>
                 <NavLink to="/about">About Us</NavLink>
                 <NavLink to="/contact">Contact</NavLink>
-
+                <NavLink to="/track-booking">Track Booking</NavLink>
                 <Link to="/admin/login">Admin Login</Link>
             </div>
         </nav>

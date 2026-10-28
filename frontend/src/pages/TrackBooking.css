@@ -1,0 +1,106 @@
+.tracking-page {
+    min-height: 70vh;
+    background: #eef2f7;
+    padding: 60px 20px;
+}
+
+.tracking-card {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(10, 35, 66, 0.12);
+}
+
+.tracking-card h1,
+.tracking-result h2 {
+    color: #0A2342;
+}
+
+.tracking-card>p {
+    color: #526479;
+    margin: 15px 0 25px;
+}
+
+.tracking-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tracking-card label {
+    color: #0A2342;
+    font-weight: bold;
+}
+
+.tracking-card input {
+    padding: 13px;
+    border: 1px solid #bdc9d8;
+    border-radius: 6px;
+    font: inherit;
+}
+
+.tracking-card button {
+    background: #0A2342;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.tracking-card button:hover {
+    background: #D4AF37;
+    color: #0A2342;
+}
+
+.tracking-card button:disabled {
+    opacity: 0.6;
+}
+
+.tracking-result {
+    background: #f0f4f8;
+    border-left: 4px solid #D4AF37;
+    padding: 20px;
+    margin-top: 25px;
+    border-radius: 6px;
+}
+
+.tracking-result p {
+    margin-top: 12px;
+}
+
+.tracking-status {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.tracking-result .status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.tracking-result .status-confirmed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.tracking-result .status-cancelled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.tracking-error {
+    color: #b42323 !important;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .tracking-card {
+        padding: 22px;
+    }
+}

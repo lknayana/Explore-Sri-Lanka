@@ -1,150 +1,481 @@
 .admin-dashboard {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: #f8f9fb;
-    border-radius: 10px;
+    max-width: 1220px;
+    margin: 30px auto 60px;
+    padding: 0 20px;
+    color: #24364b;
 }
 
-.admin-dashboard h1 {
-    color: #0A2342;
-    font-size: 36px;
+.admin-dashboard * {
+    box-sizing: border-box;
 }
 
-.admin-dashboard h2 {
-    color: #0A2342;
-    margin-top: 20px;
+.admin-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 28px 32px;
+    border-radius: 12px;
+    background: #0A2342;
+    color: white;
 }
 
-.admin-dashboard h3 {
-    color: #0A2342;
-    margin-bottom: 20px;
+.admin-brand {
+    color: #D4AF37;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    margin: 0 0 8px;
 }
 
-/* Top buttons */
-
-.admin-dashboard button {
-    cursor: pointer;
+.admin-topbar h1 {
+    color: white;
+    margin: 0;
+    font-size: 29px;
 }
 
 .dashboard-actions {
     display: flex;
     align-items: center;
-    gap: 15px;
     flex-wrap: wrap;
-    margin: 15px 0;
+    gap: 12px;
+}
+
+.admin-nav-link,
+.logout-button {
+    display: inline-block;
+    border-radius: 6px;
+    padding: 11px 17px;
+    font: inherit;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.admin-nav-link {
+    background: #D4AF37;
+    color: #0A2342;
+    font-weight: 700;
 }
 
 .logout-button {
-    background-color: #0A2342;
+    background: transparent;
     color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
+    border: 1px solid #9bafc4;
+}
+
+.admin-nav-link:hover {
+    background: #f0cc62;
 }
 
 .logout-button:hover {
-    background-color: #173c65;
+    background: #1c3e60;
 }
 
-/* Package form */
+.admin-content {
+    padding-top: 24px;
+}
+
+.admin-overview {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.admin-stat {
+    background: #f6f8fa;
+    padding: 22px 25px;
+    border: 1px solid #e4e8ef;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.admin-stat span {
+    font-size: 14px;
+    color: #526479;
+}
+
+.admin-stat strong {
+    font-size: 31px;
+    color: #0A2342;
+}
+
+.admin-stat small {
+    color: #62738a;
+}
+
+.admin-stat-tip strong {
+    font-size: 23px;
+}
+
+.admin-stat a {
+    color: #8a6511;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.admin-panel {
+    background: white;
+    border: 1px solid #e4e8ef;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 3px 12px rgba(10, 35, 66, 0.04);
+}
+
+.admin-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 24px;
+}
+
+.admin-section-heading h2 {
+    color: #0A2342;
+    font-size: 23px;
+    margin: 0 0 6px;
+}
+
+.admin-section-heading p {
+    color: #607086;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.admin-record-count {
+    background: #f4eddb;
+    color: #72520b;
+    border-radius: 20px;
+    padding: 7px 12px;
+    font-size: 13px;
+    white-space: nowrap;
+}
 
 .package-form {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    background-color: white;
-    padding: 25px;
-    border-radius: 8px;
-    border: 1px solid #e5e5e5;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 22px;
 }
 
-.package-form input,
-.package-form textarea,
-.package-form select {
-    padding: 13px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 15px;
+.admin-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.admin-field label {
+    color: #0A2342;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.admin-field small {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.admin-field input,
+.admin-field select,
+.admin-field textarea {
     width: 100%;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    border: 1px solid #cdd5df;
+    border-radius: 7px;
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 14px;
+    background: #fff;
+    color: #26364b;
 }
 
-.package-form textarea {
+.admin-field textarea {
     resize: vertical;
 }
 
-.package-form input:focus {
+.admin-field input:focus,
+.admin-field select:focus,
+.admin-field textarea:focus {
     outline: 2px solid #D4AF37;
+    outline-offset: 1px;
+    border-color: #D4AF37;
 }
 
-.package-form button {
-    background-color: #0A2342;
+.admin-full-width {
+    grid-column: 1 / -1;
+}
+
+.admin-form-divider {
+    color: #0A2342;
+    border-top: 1px solid #e4e8ef;
+    padding-top: 20px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.admin-form-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.admin-primary-button,
+.admin-secondary-button {
+    border-radius: 6px;
+    padding: 12px 22px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.admin-primary-button {
+    background: #0A2342;
     color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 13px 20px;
-    font-size: 15px;
+    border: 1px solid #0A2342;
 }
 
-.package-form button:hover {
-    background-color: #D4AF37;
+.admin-primary-button:hover {
+    background: #D4AF37;
+    border-color: #D4AF37;
     color: #0A2342;
 }
 
-/* Package table */
+.admin-secondary-button {
+    background: white;
+    color: #0A2342;
+    border: 1px solid #cdd5df;
+}
+
+.admin-secondary-button:hover {
+    background: #f3f5f8;
+}
+
+.admin-table-scroll {
+    width: 100%;
+    overflow-x: auto;
+}
 
 .package-table {
     width: 100%;
+    min-width: 670px;
     border-collapse: collapse;
-    background-color: white;
-    margin-top: 20px;
-}
-
-.package-table th {
-    background-color: #0A2342;
-    color: white;
-    padding: 15px;
     text-align: left;
 }
 
+.package-table th {
+    background: #eef2f6;
+    color: #0A2342;
+    font-size: 13px;
+    padding: 15px 14px;
+}
+
 .package-table td {
-    padding: 15px;
-    border-bottom: 1px solid #e5e5e5;
+    padding: 16px 14px;
+    border-bottom: 1px solid #e8ebef;
+    font-size: 14px;
+    vertical-align: middle;
 }
 
 .package-table tbody tr:hover {
-    background-color: #f7f8fa;
+    background: #fafbfc;
 }
 
-.package-table button {
-    padding: 8px 13px;
-    margin: 3px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background-color: white;
-}
-
-.package-table button:hover {
-    background-color: #D4AF37;
+.admin-package-name {
+    font-weight: 700;
     color: #0A2342;
 }
 
-/* Mobile devices */
+.admin-row-actions {
+    white-space: nowrap;
+}
 
-@media (max-width: 768px) {
+.admin-row-actions button {
+    padding: 8px 13px;
+    border-radius: 5px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-right: 7px;
+}
+
+.admin-edit-button {
+    color: #0A2342;
+    background: #fff;
+    border: 1px solid #9aabba;
+}
+
+.admin-delete-button {
+    color: #ad3333;
+    background: #fff;
+    border: 1px solid #ecc2c2;
+}
+
+.admin-edit-button:hover {
+    background: #f6efd9;
+}
+
+.admin-delete-button:hover {
+    background: #fff0f0;
+}
+
+.admin-alert {
+    padding: 12px 16px;
+    border-radius: 7px;
+    margin: 0 0 20px;
+    font-size: 14px;
+}
+
+.admin-alert-success {
+    background: #e8f6eb;
+    color: #176a2c;
+}
+
+.admin-alert-error {
+    background: #fff0f0;
+    color: #ae2828;
+}
+
+.admin-empty {
+    padding: 22px;
+    text-align: center;
+    color: #607086;
+}
+
+@media (max-width: 700px) {
     .admin-dashboard {
-        margin: 15px;
-        padding: 15px;
+        padding: 0 12px;
+        margin: 15px auto 40px;
     }
 
+    .admin-topbar {
+        padding: 22px 18px;
+    }
+
+    .admin-topbar h1 {
+        font-size: 24px;
+    }
+
+    .admin-overview,
     .package-form {
         grid-template-columns: 1fr;
     }
 
-    .package-table {
-        display: block;
-        overflow-x: auto;
+    .admin-panel {
+        padding: 20px 16px;
+    }
+
+    .admin-section-heading {
+        flex-wrap: wrap;
+    }
+
+    .admin-form-actions {
+        justify-content: stretch;
+    }
+
+    .admin-primary-button {
+        width: 100%;
+    }
+}
+
+
+/* Better separation in package table */
+
+.package-table thead th {
+    background-color: #0A2342;
+    color: #ffffff;
+    border-bottom: 3px solid #D4AF37;
+}
+
+.package-table tbody tr:nth-child(even) {
+    background-color: #f0f4f8;
+}
+
+.package-table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.package-table tbody td {
+    border-bottom: 1px solid #cbd5e1;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+.package-table tbody tr:hover {
+    background-color: #fff8e6;
+}
+
+.admin-package-name {
+    font-weight: 800;
+}
+
+
+/* Stronger visual separation for admin dashboard */
+
+.admin-dashboard {
+    background-color: #eef2f7;
+    padding: 30px;
+    border-radius: 14px;
+}
+
+/* Main content cards */
+.admin-panel {
+    background-color: #ffffff;
+    border: 1px solid #d4dce7;
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 30px;
+
+    box-shadow: 0 8px 24px rgba(10, 35, 66, 0.12);
+}
+
+/* Section headings */
+.admin-section-heading {
+    padding-bottom: 18px;
+    border-bottom: 2px solid #D4AF37;
+    margin-bottom: 28px;
+}
+
+.admin-section-heading h2 {
+    color: #0A2342;
+    font-weight: 800;
+}
+
+/* Package form fields */
+.admin-field input,
+.admin-field select,
+.admin-field textarea {
+    background-color: #f8fafc;
+    border: 1px solid #bdc9d8;
+}
+
+.admin-field input:focus,
+.admin-field select:focus,
+.admin-field textarea:focus {
+    background-color: #ffffff;
+    border-color: #D4AF37;
+}
+
+/* Summary cards */
+.admin-stat {
+    background-color: #ffffff;
+    border: 1px solid #d4dce7;
+    box-shadow: 0 3px 10px rgba(10, 35, 66, 0.07);
+}
+
+/* Mobile spacing */
+@media (max-width: 700px) {
+    .admin-dashboard {
+        padding: 14px;
+    }
+
+    .admin-panel {
+        padding: 20px 16px;
     }
 }

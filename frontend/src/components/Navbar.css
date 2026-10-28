@@ -45,3 +45,15 @@
         gap: 12px;
     }
 }
+
+
+/* Active Navigation Tab */
+
+.navbar a.active {
+    color: #D4AF37;
+    border-bottom: 2px solid #D4AF37;
+}
+
+.navbar a.active:hover {
+    color: #D4AF37;
+}

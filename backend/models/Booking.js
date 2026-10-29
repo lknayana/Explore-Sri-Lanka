@@ -46,10 +46,19 @@ const bookingSchema = new mongoose.Schema({
         enum: ['Car', 'Van', 'Bus']
     },
 
+
     guideLanguage: {
         type: String,
-        required: true
+        enum: [
+            'English',
+            'Hindi',
+            'Mandarin Chinese',
+            'German',
+            'Russian'
+        ],
+        default: 'English'
     },
+
 
     guideCount: {
         type: Number,

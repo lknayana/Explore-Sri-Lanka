@@ -201,14 +201,19 @@ function BookingForm() {
                     </select>
 
                     <label>Preferred Guide Language</label>
+
+                    <label>Preferred Guide Language</label>
                     <select
                         value={guideLanguage}
                         onChange={e => setGuideLanguage(e.target.value)}
                     >
                         <option value="English">English</option>
-                        <option value="Sinhala">Sinhala</option>
-                        <option value="Tamil">Tamil</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="Mandarin Chinese">Mandarin Chinese</option>
+                        <option value="German">German</option>
+                        <option value="Russian">Russian</option>
                     </select>
+
 
                     <label>Number of Guides Requested</label>
                     <input

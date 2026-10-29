@@ -202,7 +202,6 @@ function BookingForm() {
 
                     <label>Preferred Guide Language</label>
 
-                    <label>Preferred Guide Language</label>
                     <select
                         value={guideLanguage}
                         onChange={e => setGuideLanguage(e.target.value)}

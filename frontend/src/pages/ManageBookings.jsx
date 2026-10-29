@@ -89,6 +89,51 @@ function ManageBookings() {
     }
 
 
+    async function deleteBooking(id) {
+        const confirmed = window.confirm(
+            'Are you sure you want to permanently delete this booking?'
+        )
+
+        if (!confirmed) return
+
+        setError('')
+        setMessage('')
+
+        try {
+            const response = await fetch(
+                `http://localhost:5000/api/bookings/${id}`,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            )
+
+            if (response.status === 401 || response.status === 403) {
+                sessionStorage.removeItem('adminToken')
+                navigate('/admin/login', { replace: true })
+                return
+            }
+
+            if (!response.ok) {
+                const data = await response.json()
+                throw new Error(data.message || 'Could not delete booking')
+            }
+
+            setBookings(previous =>
+                previous.filter(booking => booking._id !== id)
+            )
+
+            setMessage('Booking deleted successfully!')
+
+        } catch (err) {
+            setError(err.message)
+        }
+    }
+
+
+
     const filteredBookings = bookings
         .filter(booking => {
             const matchesStatus =
@@ -369,6 +414,16 @@ function ManageBookings() {
                                                 >
                                                     Cancel
                                                 </button>
+
+
+                                                <button
+                                                    type="button"
+                                                    className="booking-delete-button"
+                                                    onClick={() => deleteBooking(booking._id)}
+                                                >
+                                                    Delete
+                                                </button>
+
                                             </div>
                                         </td>
 

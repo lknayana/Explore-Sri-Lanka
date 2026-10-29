@@ -363,6 +363,27 @@ app.put('/api/bookings/:id/status', verifyAdmin, async (req, res) => {
 })
 
 
+app.delete('/api/bookings/:id', verifyAdmin, async (req, res) => {
+    try {
+        const deletedBooking = await Booking.findByIdAndDelete(req.params.id)
+
+        if (!deletedBooking) {
+            return res.status(404).json({
+                message: 'Booking not found'
+            })
+        }
+
+        res.json({
+            message: 'Booking deleted successfully'
+        })
+
+    } catch (error) {
+        res.status(400).json({
+            message: 'Could not delete booking'
+        })
+    }
+})
+
 
 
 app.put('/api/packages/:id', verifyAdmin, async (req, res) => {

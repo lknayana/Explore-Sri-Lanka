@@ -396,3 +396,18 @@
     opacity: 0.45;
     cursor: not-allowed;
 }
+
+
+/* Delete Booking Button */
+
+.booking-table-actions .booking-delete-button {
+    background-color: #b42323;
+    color: white;
+    border: 1px solid #b42323;
+}
+
+.booking-table-actions .booking-delete-button:hover:not(:disabled) {
+    background-color: #8f1d1d;
+    color: white;
+    border-color: #8f1d1d;
+}

@@ -58,7 +58,7 @@ function Footer() {
 
             <div className="footer-bottom">
                 <p>© 2026 Explore Sri Lanka. All Rights Reserved.</p>
-                <p>Academic Project | Journey Beyond Limits</p>
+                <p>Years of Experience | Journey Beyond Limits</p>
             </div>
         </footer>
     )

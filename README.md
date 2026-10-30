@@ -232,3 +232,23 @@ Explore-Sri-Lanka/
 ```
 
 This structure helps keep the frontend, backend and database-related code organized. It also makes the project easier to understand and maintain.
+
+## 8. Database Design
+
+The application uses MongoDB Atlas to store and manage data. Mongoose is used to define the database schemas.
+
+The database contains four main collections:
+
+- **Packages:** Stores tour package details such as destination, duration, price and itinerary.
+- **Bookings:** Stores customer booking requests, travel details and booking status.
+- **Reviews:** Stores customer reviews and ratings for tour packages.
+- **Admins:** Stores administrator login details with hashed passwords.
+
+Each booking and review is linked to a tour package using its `packageId`. The database ER diagram is available in the `docs` folder.
+
+## 9. Author
+
+**Name:** Priyasad D.L.N.  
+**Registration Number:** EG/2023/5802  
+**Degree:** BSc (Hons) in Electrical and Information Engineering  
+**University:** University of Ruhuna
